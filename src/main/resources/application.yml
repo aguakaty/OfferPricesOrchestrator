@@ -1,0 +1,28 @@
+server:
+  port: 8086
+  servlet:
+    context-path: ""
+
+spring:
+  main:
+    banner-mode: "off"
+  datasource:
+    url: jdbc:h2:mem:test
+    username: user
+    password: user
+    driver-class-name: org.h2.Driver
+  jpa:
+    database: h2
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: create-drop
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
