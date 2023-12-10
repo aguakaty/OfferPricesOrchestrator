@@ -6,6 +6,7 @@ import com.inditex.prices.domain.ports.in.GetPriceOfferUseCase;
 import com.inditex.prices.domain.ports.out.PriceOfferRepositoryPort;
 import com.inditex.prices.infrastructure.adapters.JpaPriceOfferRepositoryAdapter;
 import com.inditex.prices.infrastructure.mappers.PriceOfferMapper;
+import com.inditex.prices.infrastructure.mappers.PriceOfferResponseMapper;
 import com.inditex.prices.infrastructure.repositories.JpaPriceOfferRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +15,8 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfig {
 
     @Bean
-    public PriceOfferService priceOfferService(PriceOfferRepositoryPort priceOfferRepositoryPort, GetPriceOfferUseCase getPriceOfferUseCase){
-        return new PriceOfferService(new GetPriceOfferUseCaseImp(priceOfferRepositoryPort));
+    public PriceOfferService priceOfferService(PriceOfferRepositoryPort priceOfferRepositoryPort, GetPriceOfferUseCase getPriceOfferUseCase, PriceOfferResponseMapper priceOfferResponseMapper){
+        return new PriceOfferService(new GetPriceOfferUseCaseImp(priceOfferRepositoryPort), priceOfferResponseMapper);
     }
 
     @Bean

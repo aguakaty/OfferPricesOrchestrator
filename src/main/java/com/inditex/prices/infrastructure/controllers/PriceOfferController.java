@@ -2,6 +2,7 @@ package com.inditex.prices.infrastructure.controllers;
 
 import com.inditex.prices.application.services.PriceOfferService;
 import com.inditex.prices.domain.model.PriceOfferDomain;
+import com.inditex.prices.infrastructure.records.PriceOfferResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class PriceOfferController {
                                                          @RequestParam int brandId){
         logger.info("Received request for product={}, brand={}, date={}", productId, brandId, date);
         try{
-            Optional<PriceOfferDomain> priceOffer = priceOfferService.getOfferByDate((long)productId, (long)brandId, date);
+            Optional<PriceOfferResponse> priceOffer = priceOfferService.getOfferByDate((long)productId, (long)brandId, date);
             if(priceOffer.isPresent()){
                 logger.info("Price offer found: {}", priceOffer.get());
                 return new ResponseEntity<>(priceOffer, HttpStatus.FOUND);
